@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NirvanaRealm name="umserver" exportDate="2020-04-29+03:00" comment="Realm configuration from umserver" version="10.5" buildInfo="10.5.0.0.123831">
+    <RealmConfiguration>
+        <ConfigGroup name="Audit Settings">
+            <ConfigItem name="ChannelACL" value="true"/>
+            <ConfigItem name="ChannelFailure" value="true"/>
+            <ConfigItem name="ChannelMaintenance" value="false"/>
+            <ConfigItem name="ChannelSuccess" value="false"/>
+            <ConfigItem name="DataGroup" value="false"/>
+            <ConfigItem name="DataGroupFailure" value="false"/>
+            <ConfigItem name="DataStream" value="false"/>
+            <ConfigItem name="Group" value="true"/>
+            <ConfigItem name="GroupMembers" value="true"/>
+            <ConfigItem name="InterfaceManagement" value="true"/>
+            <ConfigItem name="JoinFailure" value="true"/>
+            <ConfigItem name="JoinMaintenance" value="true"/>
+            <ConfigItem name="JoinSuccess" value="false"/>
+            <ConfigItem name="QueueACL" value="true"/>
+            <ConfigItem name="QueueFailure" value="true"/>
+            <ConfigItem name="QueueMaintenance" value="false"/>
+            <ConfigItem name="QueueSuccess" value="false"/>
+            <ConfigItem name="RealmACL" value="true"/>
+            <ConfigItem name="RealmFailure" value="true"/>
+            <ConfigItem name="RealmMaintenance" value="true"/>
+            <ConfigItem name="RealmSuccess" value="false"/>
+            <ConfigItem name="SnoopStream" value="false"/>
+        </ConfigGroup>
+        <ConfigGroup name="Client Timeout Values">
+            <ConfigItem name="EventTimeout" value="60000"/>
+            <ConfigItem name="HighWaterMark" value="3000"/>
+            <ConfigItem name="LowWaterMark" value="1000"/>
+            <ConfigItem name="QueueAccessWaitLimit" value="200"/>
+            <ConfigItem name="QueueBlockLimit" value="500"/>
+            <ConfigItem name="QueuePushWaitLimit" value="200"/>
+            <ConfigItem name="TransactionLifeTime" value="20000"/>
+        </ConfigGroup>
+        <ConfigGroup name="Cluster Config">
+            <ConfigItem name="ClientQueueSize" value="1000"/>
+            <ConfigItem name="ClientQueueWindow" value="100"/>
+            <ConfigItem name="ClientStateDelay" value="5000"/>
+            <ConfigItem name="DisableHTTPConnections" value="true"/>
+            <ConfigItem name="DisconnectWait" value="30000"/>
+            <ConfigItem name="DisconnectWhenNotReady" value="false"/>
+            <ConfigItem name="EnableMulticast" value="true"/>
+            <ConfigItem name="EnableStoreRecoveryRetry" value="true"/>
+            <ConfigItem name="EnginePipelineSize" value="2"/>
+            <ConfigItem name="FormationTimeout" value="120000"/>
+            <ConfigItem name="HeartBeatInterval" value="120000"/>
+            <ConfigItem name="InitialConnectionTimeout" value="30000"/>
+            <ConfigItem name="IsCommittedDelay" value="5000"/>
+            <ConfigItem name="MasterRequestTimeout" value="60000"/>
+            <ConfigItem name="MasterVoteDelay" value="10000"/>
+            <ConfigItem name="MasterWaitTimeout" value="10000"/>
+            <ConfigItem name="PublishQueueEnabled" value="true"/>
+            <ConfigItem name="QueueSize" value="1000"/>
+            <ConfigItem name="StateChangeScan" value="60000"/>
+            <ConfigItem name="SyncPingSize" value="1000"/>
+        </ConfigGroup>
+        <ConfigGroup name="Comet Config">
+            <ConfigItem name="BufferSize" value="5120"/>
+            <ConfigItem name="EnableLogging" value="false"/>
+            <ConfigItem name="Timeout" value="60000"/>
+        </ConfigGroup>
+        <ConfigGroup name="Connection Config">
+            <ConfigItem name="AllowBufferReuse" value="true"/>
+            <ConfigItem name="BufferManagerCount" value="16"/>
+            <ConfigItem name="BufferPoolSize" value="100"/>
+            <ConfigItem name="BufferSize" value="102400"/>
+            <ConfigItem name="CometReadTimeout" value="20000"/>
+            <ConfigItem name="ConnectionDelay" value="60000"/>
+            <ConfigItem name="IdleDriverTimeout" value="300000"/>
+            <ConfigItem name="IdleSessionTimeout" value="300000"/>
+            <ConfigItem name="KeepAlive" value="60000"/>
+            <ConfigItem name="MaxBufferSize" value="20971520"/>
+            <ConfigItem name="MaxNoOfConnections" value="-1"/>
+            <ConfigItem name="MaxWriteCount" value="30"/>
+            <ConfigItem name="NetworkMonitorThreads" value="4"/>
+            <ConfigItem name="PriorityQueueCount" value="10"/>
+            <ConfigItem name="PriorityReadSpinLockMaxConnections" value="1"/>
+            <ConfigItem name="PriorityReadSpinLockTime" value="500"/>
+            <ConfigItem name="PriorityReadType" value="1"/>
+            <ConfigItem name="QueueHighWaterMark" value="3000"/>
+            <ConfigItem name="QueueLowWaterMark" value="1000"/>
+            <ConfigItem name="ReadCount" value="10"/>
+            <ConfigItem name="UseDirectBuffering" value="true"/>
+            <ConfigItem name="WriteHandlerType" value="3"/>
+            <ConfigItem name="whEventThresholdCount" value="350"/>
+            <ConfigItem name="whEventThresholdTime" value="500"/>
+            <ConfigItem name="whMaxEventsBeforeFlush" value="100"/>
+            <ConfigItem name="whMaxEventsPerSecond" value="100000"/>
+            <ConfigItem name="whMaxTimeBetweenFlush" value="2"/>
+        </ConfigGroup>
+        <ConfigGroup name="Data Stream Config">
+            <ConfigItem name="MonitorTimer" value="10000"/>
+            <ConfigItem name="OffloadMulticastWrite" value="false"/>
+            <ConfigItem name="SendInitialMapping" value="true"/>
+        </ConfigGroup>
+        <ConfigGroup name="DurableConfig">
+            <ConfigItem name="DurableNameFiltering" value="false"/>
+            <ConfigItem name="QueuedExtendedException" value="false"/>
+        </ConfigGroup>
+        <ConfigGroup name="Environment Config">
+            <ConfigItem name="AvailableProcessors" value="2"/>
+            <ConfigItem name="Embedded" value="false"/>
+            <ConfigItem name="InterRealmProtocolVersion" value="1"/>
+            <ConfigItem name="JavaVendor" value="Azul Systems, Inc."/>
+            <ConfigItem name="JavaVersion" value="1.8.0_231"/>
+            <ConfigItem name="NanosecondSupport" value="true"/>
+            <ConfigItem name="OSArchitecture" value="amd64"/>
+            <ConfigItem name="OSName" value="Linux"/>
+            <ConfigItem name="OSVersion" value="3.10.0-862.el7.x86_64"/>
+            <ConfigItem name="ProcessId" value="107"/>
+            <ConfigItem name="ServerBuildDate" value="January 9 2020"/>
+            <ConfigItem name="ServerBuildNumber" value="Build 127282"/>
+            <ConfigItem name="ServerReleaseDetails" value="10.5.0.4.127282"/>
+            <ConfigItem name="ServerVersion" value="$Name: nirvana_10_5 $ - $Revision: 127282 $"/>
+        </ConfigGroup>
+        <ConfigGroup name="Event Storage">
+            <ConfigItem name="ActiveDelay" value="1000"/>
+            <ConfigItem name="AutoDeleteScan" value="5000"/>
+            <ConfigItem name="AutoMaintenanceThreshold" value="50"/>
+            <ConfigItem name="CacheAge" value="60000"/>
+            <ConfigItem name="EnableStoreCaching" value="false"/>
+            <ConfigItem name="IdleDelay" value="10000"/>
+            <ConfigItem name="JMSEngineAutoPurgeTime" value="5000"/>
+            <ConfigItem name="MaintenanceFileSizeThreshold" value="104857600"/>
+            <ConfigItem name="MaintenanceMemoryThreshold" value="104857600"/>
+            <ConfigItem name="PageSize" value="5000"/>
+            <ConfigItem name="QueueSubscriberFiltering" value="false"/>
+            <ConfigItem name="StoreReadBufferSize" value="32768"/>
+            <ConfigItem name="SyncBatchSize" value="50"/>
+            <ConfigItem name="SyncServerFiles" value="false"/>
+            <ConfigItem name="SyncTimeLimit" value="20"/>
+            <ConfigItem name="ThreadPoolSize" value="4"/>
+        </ConfigGroup>
+        <ConfigGroup name="Fanout Values">
+            <ConfigItem name="ConnectionGrouping" value="true"/>
+            <ConfigItem name="DelayPublishOnCapacity" value="true"/>
+            <ConfigItem name="HonourSharedDurableCapacity" value="true"/>
+            <ConfigItem name="IteratorWindowSize" value="100"/>
+            <ConfigItem name="JMSQueueMaxMultiplier" value="10"/>
+            <ConfigItem name="ParallelThreadPoolSize" value="2"/>
+            <ConfigItem name="PeakPublishDelay" value="1"/>
+            <ConfigItem name="PublishDelay" value="1"/>
+            <ConfigItem name="PublishExpiredEvents" value="true"/>
+            <ConfigItem name="SendEndOfChannelAlways" value="false"/>
+            <ConfigItem name="SendPubEventsImmediately" value="true"/>
+        </ConfigGroup>
+        <ConfigGroup name="Global Values">
+            <ConfigItem name="AllowRealmAdminFullAccess" value="true"/>
+            <ConfigItem name="CacheJoinInfoKeys" value="true"/>
+            <ConfigItem name="DisableExplicitGC" value="true"/>
+            <ConfigItem name="EnableCaching" value="false"/>
+            <ConfigItem name="EnableDNSLookups" value="true"/>
+            <ConfigItem name="EnableWeakReferenceCleanup" value="true"/>
+            <ConfigItem name="ExtendedMessageSelector" value="true"/>
+            <ConfigItem name="HTTPCookieSize" value="14"/>
+            <ConfigItem name="NHPScanTime" value="5000"/>
+            <ConfigItem name="NHPTimeout" value="120000"/>
+            <ConfigItem name="OverrideEveryoneUser" value="false"/>
+            <ConfigItem name="PauseServerPublishing" value="false"/>
+            <ConfigItem name="SendRealmSummaryStats" value="false"/>
+            <ConfigItem name="StampDictionary" value="true"/>
+            <ConfigItem name="StampHost" value="true"/>
+            <ConfigItem name="StampTime" value="true"/>
+            <ConfigItem name="StampTimeUseHPT" value="false"/>
+            <ConfigItem name="StampTimeUseHPTScale" value="0"/>
+            <ConfigItem name="StampUser" value="true"/>
+            <ConfigItem name="StatusBroadcast" value="5000"/>
+        </ConfigGroup>
+        <ConfigGroup name="Inter-Realm Comms Config">
+            <ConfigItem name="EstablishmentTime" value="30000"/>
+            <ConfigItem name="KeepAliveInterval" value="10000"/>
+            <ConfigItem name="KeepAliveResetTime" value="35000"/>
+            <ConfigItem name="MaximumReconnectTime" value="20000"/>
+            <ConfigItem name="MinimumReconnectTime" value="1000"/>
+            <ConfigItem name="Timeout" value="120000"/>
+            <ConfigItem name="WriteDelayTimeout" value="30000"/>
+        </ConfigGroup>
+        <ConfigGroup name="JVM Management">
+            <ConfigItem name="EmergencyThreshold" value="94"/>
+            <ConfigItem name="EnableJMX" value="false"/>
+            <ConfigItem name="ExitOnDiskIOError" value="true"/>
+            <ConfigItem name="ExitOnInterfaceFailure" value="false"/>
+            <ConfigItem name="IORetryCount" value="10"/>
+            <ConfigItem name="IOSleepTime" value="500"/>
+            <ConfigItem name="JMXRMIServerURLString" value="service:jmx:rmi:///jndi/rmi://localhost:9999/server"/>
+            <ConfigItem name="MemoryMonitoring" value="2000"/>
+            <ConfigItem name="ThrottleAllPublishersAtThreshold" value="true"/>
+            <ConfigItem name="WarningThreshold" value="85"/>
+        </ConfigGroup>
+        <ConfigGroup name="Join Config">
+            <ConfigItem name="ActiveThreadPoolSize" value="2"/>
+            <ConfigItem name="IdleThreadPoolSize" value="1"/>
+            <ConfigItem name="MaxEventsPerSchedule" value="1000"/>
+            <ConfigItem name="MaxQueueSizeToUse" value="100"/>
+            <ConfigItem name="RemoteJoinAckBatchSize" value="100"/>
+            <ConfigItem name="RemoteJoinAckInterval" value="1000"/>
+            <ConfigItem name="UseQueuedLocalJoinHandler" value="false"/>
+        </ConfigGroup>
+        <ConfigGroup name="Logging Config">
+            <ConfigItem name="DefaultLogSize" value="100000000"/>
+            <ConfigItem name="DisplayCurrentThread" value="true"/>
+            <ConfigItem name="EmbedTag" value="false"/>
+            <ConfigItem name="EnableLog4J" value="false"/>
+            <ConfigItem name="EnableStatusLog" value="true"/>
+            <ConfigItem name="LogManager" value="1"/>
+            <ConfigItem name="RolledLogFileDepth" value="10"/>
+            <ConfigItem name="TraceFolderLogSize" value="1024"/>
+            <ConfigItem name="TraceStoreLogLevel" value="2"/>
+            <ConfigItem name="TraceStoreLogSize" value="1"/>
+            <ConfigItem name="TraceStores" value=""/>
+            <ConfigItem name="fLoggerLevel" value="4"/>
+        </ConfigGroup>
+        <ConfigGroup name="Metric Config">
+            <ConfigItem name="EnableEventMemoryMonitoring" value="true"/>
+            <ConfigItem name="EnableMetrics" value="true"/>
+        </ConfigGroup>
+        <ConfigGroup name="Plugin Config">
+            <ConfigItem name="EnableAccessLog" value="true"/>
+            <ConfigItem name="EnableErrorLog" value="true"/>
+            <ConfigItem name="EnablePluginLog" value="true"/>
+            <ConfigItem name="MaxNumberOfPluginThreads" value="200"/>
+            <ConfigItem name="PluginTimeout" value="30000"/>
+        </ConfigGroup>
+        <ConfigGroup name="Protobuf Config">
+            <ConfigItem name="CacheEventFilter" value="true"/>
+        </ConfigGroup>
+        <ConfigGroup name="Protocol AMQP Config">
+            <ConfigItem name="AnonymousUser" value="anonymous_amqp"/>
+            <ConfigItem name="BufferSize" value="10240"/>
+            <ConfigItem name="DefaultNodeMode" value="0"/>
+            <ConfigItem name="Enable" value="true"/>
+            <ConfigItem name="EnableWriteThread" value="false"/>
+            <ConfigItem name="EngineLoopCount" value="50"/>
+            <ConfigItem name="MaxFrameSize" value="10000000"/>
+            <ConfigItem name="MaxThreadPoolSize" value="10"/>
+            <ConfigItem name="MinThreadPoolSize" value="1"/>
+            <ConfigItem name="QueuePrefix" value="queue://"/>
+            <ConfigItem name="SASL_Anonymous" value="true"/>
+            <ConfigItem name="SASL_CRAM-MD5" value="false"/>
+            <ConfigItem name="SASL_DIGEST-MD5" value="false"/>
+            <ConfigItem name="SASL_Plain" value="false"/>
+            <ConfigItem name="SubscriberCredit" value="1000"/>
+            <ConfigItem name="Timeout" value="60000"/>
+            <ConfigItem name="TopicPrefix" value="topic://"/>
+            <ConfigItem name="TransformToUse" value="2"/>
+        </ConfigGroup>
+        <ConfigGroup name="Protocol MQTT Config">
+            <ConfigItem name="DisconnectClientsOnPublishFailure" value="true"/>
+            <ConfigItem name="Enable" value="true"/>
+            <ConfigItem name="EnableAutoCreateTopics" value="true"/>
+            <ConfigItem name="EnforceAlphaNumericClientID" value="false"/>
+            <ConfigItem name="IgnoreClientIDLength" value="true"/>
+            <ConfigItem name="MaxOutstanding" value="64000"/>
+            <ConfigItem name="QoS0AsTransient" value="false"/>
+            <ConfigItem name="SessionStateTTL" value="259200000"/>
+            <ConfigItem name="Strict" value="true"/>
+            <ConfigItem name="SupportZeroLength" value="true"/>
+        </ConfigGroup>
+        <ConfigGroup name="RecoveryDaemon">
+            <ConfigItem name="EventsPerBlock" value="500"/>
+            <ConfigItem name="ThreadPool" value="4"/>
+        </ConfigGroup>
+        <ConfigGroup name="Server Protection">
+            <ConfigItem name="EnableFlowControl" value="false"/>
+            <ConfigItem name="FlowControlWaitTimeOne" value="16000"/>
+            <ConfigItem name="FlowControlWaitTimeThree" value="10000"/>
+            <ConfigItem name="FlowControlWaitTimeTwo" value="13332"/>
+        </ConfigGroup>
+        <ConfigGroup name="Thread Pool Config">
+            <ConfigItem name="CommonPoolThreadSize" value="5"/>
+            <ConfigItem name="ConnectionThreadPoolMaxSize" value="10"/>
+            <ConfigItem name="ConnectionThreadPoolMinSize" value="4"/>
+            <ConfigItem name="ConnectionThreadWaitTime" value="120000"/>
+            <ConfigItem name="EnableConnectionThreadPooling" value="true"/>
+            <ConfigItem name="MaxUnauthorisedCount" value="1000"/>
+            <ConfigItem name="ReadThreadPoolMaxSize" value="100"/>
+            <ConfigItem name="ReadThreadPoolMinSize" value="4"/>
+            <ConfigItem name="SchedulerPoolSize" value="2"/>
+            <ConfigItem name="ThreadIdleQueueSize" value="10"/>
+            <ConfigItem name="WriteThreadPoolMaxSize" value="1000"/>
+            <ConfigItem name="WriteThreadPoolMinSize" value="5"/>
+        </ConfigGroup>
+        <ConfigGroup name="TransactionManager">
+            <ConfigItem name="MaxEventsPerTransaction" value="0"/>
+            <ConfigItem name="MaxTransactionTime" value="300000"/>
+            <ConfigItem name="TTLThreshold" value="1000"/>
+        </ConfigGroup>
+    </RealmConfiguration>
+    <RealmPermissionSet>
+        <RealmACLEntry listACLEntries="false" modifyACLEntries="false" fullControl="true" connectToRealm="false" changeRealmConfig="false" addremoveChannels="false" addremoveJoins="false" addremoveRealms="false" overrideConnectionCount="false" useAdminAPI="false" manageDatagroups="false" publishDatagroups="false" ownDatagroups="false" host="*" name="*"/>
+        <RealmACLEntry listACLEntries="false" modifyACLEntries="false" fullControl="true" connectToRealm="false" changeRealmConfig="false" addremoveChannels="false" addremoveJoins="false" addremoveRealms="false" overrideConnectionCount="false" useAdminAPI="false" manageDatagroups="false" publishDatagroups="false" ownDatagroups="false" host="127.0.0.1" name="sagadmin"/>
+        <RealmACLEntry listACLEntries="false" modifyACLEntries="false" fullControl="true" connectToRealm="false" changeRealmConfig="false" addremoveChannels="false" addremoveJoins="false" addremoveRealms="false" overrideConnectionCount="false" useAdminAPI="false" manageDatagroups="false" publishDatagroups="false" ownDatagroups="false" host="localhost" name="sagadmin"/>
+        <RealmGroupACLEntry listACLEntries="false" modifyACLEntries="false" fullControl="false" connectToRealm="true" changeRealmConfig="false" addremoveChannels="false" addremoveJoins="false" addremoveRealms="false" overrideConnectionCount="false" useAdminAPI="false" manageDatagroups="false" publishDatagroups="false" ownDatagroups="false" groupname="Everyone"/>
+    </RealmPermissionSet>
+    <ChannelSet>
+        <ChannelEntry>
+            <ChannelAttributesEntry name="/naming/defaultContext" TTL="0" capacity="0" EID="0" clusterWide="false" jmsEngine="false" mergeEngine="false" type="MIXED_TYPE"/>
+            <StorePropertiesEntry HonorCapacityWhenFull="true" SyncOnEachWrite="false" SyncMaxBatchSize="0" SyncBatchTime="0" PerformAutomaticMaintenance="true" EnableCaching="true" CacheOnReload="true" EnableReadBuffering="true" ReadBufferSize="10240" Priority="4" EnableMulticast="false" MultiFileEventsPerSpindle="50000" StampDictionary="0"/>
+            <ChannelPermissionSet>
+                <ChannelACLEntry listACLEntries="true" modifyACLEntries="true" fullControl="true" getLastEID="true" purgeEvents="true" subscribe="true" publish="true" useNamedSubcription="true" host="sag-4bbqxt2.eur.ad.sag" name="administrator"/>
+                <ChannelGroupACLEntry listACLEntries="true" modifyACLEntries="true" fullControl="true" getLastEID="true" purgeEvents="true" subscribe="true" publish="true" useNamedSubcription="true" groupname="Everyone"/>
+            </ChannelPermissionSet>
+            <ChannelKeySet>
+                <ChannelKeyEntry keyName="alias" keyDepth="1"/>
+            </ChannelKeySet>
+            <EventsSet>
+                <Event id="0">
+                    <EventAttribSet>
+                        <EventAttrib name="nrvpub.time" type="Long" value="1588148238148"/>
+                        <EventAttrib name="nrvpub.host" type="String" value="sag-4bbqxt2.eur.ad.sag"/>
+                        <EventAttrib name="nrvpub.name" type="String" value="administrator"/>
+                        <EventAttrib name="JMSDeliveryMode" type="String" value="PERSISTENT"/>
+                        <EventAttrib name="JMSPriority" type="Byte" value="4"/>
+                    </EventAttribSet>
+                    <EventPropSet>
+                        <EventProp name="JMS_my-channels_EnableMultiplexedConnections" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_RandomRNames" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_RetryCommit" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_ConxExceptionOnRetryFailure" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_MaxReconnectAttempts" type="Integer" value="-1"/>
+                        <EventProp name="JMS_my-channels_EnableSharedDurable" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_EnableSerialDurable" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_EnableSingleSharedDurableAck" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_EnableSingleQueueAck" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_SyncWritesToDisc" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_SyncSendPersistent" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_InitialConnectionRetryCount" type="Integer" value="2"/>
+                        <EventProp name="JMS_my-channels_SyncBatchSize" type="Integer" value="50"/>
+                        <EventProp name="JMS_my-channels_SyncTime" type="Integer" value="20"/>
+                        <EventProp name="JMS_my-channels_GlobalStoreCapacity" type="Integer" value="0"/>
+                        <EventProp name="JMS_my-channels_AutoAckCount" type="Integer" value="50"/>
+                        <EventProp name="JMS_my-channels_WindowSize" type="Integer" value="100"/>
+                        <EventProp name="JMS_my-channels_useInfiniteWindowSize" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_UnAckedSize" type="Integer" value="100"/>
+                        <EventProp name="JMS_my-channels_RedliveredSize" type="Integer" value="100"/>
+                        <EventProp name="JMS_my-channels_ThreadPoolSize" type="Integer" value="30"/>
+                        <EventProp name="JMS_my-channels_AutoReconnectAfterACL" type="Boolean" value="false"/>
+                        <EventProp name="JMS_my-channels_ImmediateReconnect" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_ReconnectInterval" type="Long" value="2000"/>
+                        <EventProp name="JMS_my-channels_UseJMSEngine" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_DisconnectAfterClusterFailure" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_ConnectionTimeout" type="Long" value="10000"/>
+                        <EventProp name="JMS_my-channels_PermittedKeepAlivesMissed" type="Integer" value="2"/>
+                        <EventProp name="JMS_my-channels_SyncNamedTopicAcks" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_AdapterBuffer" type="Integer" value="1310720"/>
+                        <EventProp name="JMS_my-channels_WriteHandler" type="Integer" value="3"/>
+                        <EventProp name="JMS_my-channels_SyncQueueAcks" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_SyncTopicAcks" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_AutoCreateResource" type="Boolean" value="true"/>
+                        <EventProp name="JMS_my-channels_FollowMaster" type="Boolean" value="false"/>
+                        <EventProp name="alias.type" type="Integer" value="1"/>
+                        <EventProp name="alias" type="String" value="local_um"/>
+                        <EventProp name="alias.reference.classname" type="String" value="javax.jms.ConnectionFactory"/>
+                        <EventProp name="alias.reference.factoryclass" type="String" value="com.pcbsys.nirvana.nJMS.ConnectionFactoryFactory"/>
+                        <EventProp name="alias.reference.url" type="String" value="{&quot;JMS_my-channels_EnableMultiplexedConnections&quot;:[3,true],&quot;JMS_my-channels_RandomRNames&quot;:[3,false],&quot;JMS_my-channels_RetryCommit&quot;:[3,false],&quot;JMS_my-channels_ConxExceptionOnRetryFailure&quot;:[3,false],&quot;JMS_my-channels_MaxReconnectAttempts&quot;:[4,-1],&quot;JMS_my-channels_EnableSharedDurable&quot;:[3,true],&quot;JMS_my-channels_EnableSerialDurable&quot;:[3,false],&quot;JMS_my-channels_EnableSingleSharedDurableAck&quot;:[3,false],&quot;JMS_my-channels_EnableSingleQueueAck&quot;:[3,false],&quot;JMS_my-channels_SyncWritesToDisc&quot;:[3,false],&quot;JMS_my-channels_SyncSendPersistent&quot;:[3,true],&quot;JMS_my-channels_InitialConnectionRetryCount&quot;:[4,2],&quot;JMS_my-channels_SyncBatchSize&quot;:[4,50],&quot;JMS_my-channels_SyncTime&quot;:[4,20],&quot;JMS_my-channels_GlobalStoreCapacity&quot;:[4,0],&quot;JMS_my-channels_AutoAckCount&quot;:[4,50],&quot;JMS_my-channels_WindowSize&quot;:[4,100],&quot;JMS_my-channels_useInfiniteWindowSize&quot;:[3,false],&quot;JMS_my-channels_UnAckedSize&quot;:[4,100],&quot;JMS_my-channels_RedliveredSize&quot;:[4,100],&quot;JMS_my-channels_ThreadPoolSize&quot;:[4,30],&quot;JMS_my-channels_AutoReconnectAfterACL&quot;:[3,false],&quot;JMS_my-channels_ImmediateReconnect&quot;:[3,true],&quot;JMS_my-channels_ReconnectInterval&quot;:[1,2000],&quot;JMS_my-channels_UseJMSEngine&quot;:[3,true],&quot;JMS_my-channels_DisconnectAfterClusterFailure&quot;:[3,true],&quot;JMS_my-channels_ConnectionTimeout&quot;:[1,10000],&quot;JMS_my-channels_PermittedKeepAlivesMissed&quot;:[4,2],&quot;JMS_my-channels_SyncNamedTopicAcks&quot;:[3,true],&quot;JMS_my-channels_AdapterBuffer&quot;:[4,1310720],&quot;JMS_my-channels_WriteHandler&quot;:[4,3],&quot;JMS_my-channels_SyncQueueAcks&quot;:[3,true],&quot;JMS_my-channels_SyncTopicAcks&quot;:[3,true],&quot;JMS_my-channels_AutoCreateResource&quot;:[3,true],&quot;JMS_my-channels_FollowMaster&quot;:[3,false]}"/>
+                        <EventProp name="alias.stringRefAddr.type" type="String" value="ConnectionFactory"/>
+                        <EventProp name="alias.stringRefAddr.addr" type="String" value="nsp://localhost:9000"/>
+                    </EventPropSet>
+                    <EventData>bG9jYWxfdW0=</EventData>
+                </Event>
+            </EventsSet>
+        </ChannelEntry>
+    </ChannelSet>
+    <DataGroupSet/>
+    <RealmInterfaces>
+        <RealmNHPInterface>
+            <RealmInterface name="nhp0" port="9000" adapter="0.0.0.0" autostart="true" advertise="true" authtime="10000" backlog="100" acceptThreads="10" sendbuffersize="1310720" receivebuffersize="1310720" allowforinterrealm="true" allowclientconnections="true" EnableNIO="true"/>
+            <JavascriptConfigEntry CORSAllowedOrigins="*" EnableJavaScript="true" EnableWebSockets="true" CORSAllowCredentials="true" EnableGZipLP="true" MinimumBytesBeforeGZIP="1000" AjaxLPIdleDelay="60000" AjaxLPActiveDelay="100"/>
+        </RealmNHPInterface>
+    </RealmInterfaces>
+    <RealmSecurityGroupSet/>
+</NirvanaRealm>

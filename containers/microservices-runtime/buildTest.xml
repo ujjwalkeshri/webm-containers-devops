@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<project name="test" default="startTest" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property name="testSuitePackagesPath" value="${testDir}"/>
+	
+	<property name="ivy.install.version" value="2.1.0-rc2" />
+        <property name="ivy.home" value="${user.home}/.ant" />
+        <property name="ivy.jar.dir" value="${ivy.home}/lib" />
+        <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<target name="download-ivy" unless="offline">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/maven-metadata.xml" dest="${basedir}/maven-metadata.xml"/>
+		<xmlproperty file="${basedir}/maven-metadata.xml" keepRoot="false"
+		     semanticAttributes="true"/>
+		<echo message="latest ivy version is: ${versioning.latest}"/>
+		<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${versioning.latest}/ivy-${versioning.latest}.jar"
+		     dest="${ivy.jar.file}" usetimestamp="true"/>
+    	</target>
+
+	<target name="init-ivy" depends="download-ivy">
+		<path id="ivy.lib.path">
+	    		<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+	
+	<target name="ivy-retrieve-artifacts" description="Retrieve artifacts" depends="init-ivy">
+		<property name="ivy.lib.dir" value="./lib"/>
+		<ivy:configure file="${basedir}/containers/microservices-runtime/ivysettings.xml" settingsId="ivy.artifacts"/>
+		<ivy:resolve file="${basedir}/containers/microservices-runtime/ivy.xml" settingsRef="ivy.artifacts" resolveMode="dynamic"/>
+		<ivy:retrieve settingsRef="ivy.artifacts"/>
+	</target>
+
+	<target name="prepareTest" >
+		<!-- download test classpath jars from maven repository. Use ivy for this -->
+		<antcall target="ivy-retrieve-artifacts"/>
+		
+		<condition property="tempTestContainerName" value="${testContainerName}" else="msrtest">
+    			<isset property="testContainerName" />
+		</condition>
+	  
+		
+		<echo message="Copy jars from container ${tempTestContainerName}"/>
+                <!-- the WMTestSuite class path requires wm libraries. To avoid updating those with every version, we just copy them out the container. -->		
+  		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
+			<arg value="-c" />
+			<arg value="docker cp ${tempTestContainerName}:/opt/softwareag/common/lib/ext/enttoolkit.jar ../../lib" />
+  		</exec>
+	  
+  		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
+			<arg value="-c" />
+			<arg value="docker cp  $( docker ps -q ):/opt/softwareag/common/lib/glassfish/gf.jakarta.mail.jar ../../lib" />
+  		</exec>
+	  
+  		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
+			<arg value="-c" />
+			<arg value="docker cp $( docker ps -q ):/opt/softwareag/common/lib/wm-isclient.jar ../../lib" />
+		</exec>
+	  
+		<exec dir="${basedir}/containers/microservices-runtime" executable="/bin/bash" osfamily="unix" vmlauncher="false" failonerror="true" >
+			<arg value="-c" />
+			<arg value="docker cp $( docker ps -q ):/opt/softwareag/IntegrationServer/lib/wm-isserver.jar ../../lib" />
+		</exec>  
+	</target>
+
+        <target name="waitForContainerToStart">
+		<echo message="Wait for server on http://${testISHost}:${testISPort} to start."/>
+		<waitfor maxwait="3" maxwaitunit="minute" checkevery="500">
+			<!-- the servers requires athentication and always returns 401. This methods does not support basic auth and can be replaced with socker -->
+			<http url="http://${testISHost}:${testISPort}" errorsBeginAt="500"/>
+		</waitfor>
+	        <echo message="Server on http://${testISHost}:${testISPort} started"/>
+	</target>
+	
+	
+	<target name="startTest" depends="prepareTest,waitForContainerToStart" >		
+	    <var name="failedTestList" value=""/>
+		
+            <!-- interate over the test project and triiger all xml tests in the setup folder -->
+            <for param="testProject" keepgoing="true" trim="true">
+			<path>
+				<dirset dir="${testSuitePackagesPath}" includes="*" excludes=".*,replicate" />
+			</path>
+			<sequential>
+				<trycatch reference="exception_ref">
+					<try>
+                       				<echo message="@{testProject}"/>
+						<antcall target="junitTestAndReportXML">
+							<param name="testPackageName" value="@{testProject}" />
+						</antcall>
+					</try>
+					<catch>
+						<echo message="JUnit test for package '@{testProject}' failed" />
+						<var name="failedTestList" value="${failedTestList}'@{testProject}', " />
+						<property name="testFail" refid="exception_ref" />
+					</catch>
+				</trycatch>
+			</sequential>
+		</for>
+
+		<if>
+			<not>
+				<equals arg1="${failedTestList}" arg2="" trim="true" />
+			</not>
+			<then>
+				<fail message="At least one test failed. Failed packages: ${failedTestList}" />
+			</then>
+			<else>
+				<echo message="All JUnit Tests passed."/>
+			</else>
+		</if>
+	</target>
+
+	<target name="junitInitTest">
+		<echo message="Init JUnit tests for package ${testPackageName}" />
+		
+		<property name="testPackageReportsDir" value="${testPackageName}/resources/reports" />
+	</target>
+	
+	<target name="junitCleanUp">
+		<delete dir="${testPackageReportsDir}" />								
+	</target>
+	
+
+	<!--execute only if the XML Test directory exists in the test package -->
+	<target name="junitTestAndReportXML" depends="junitInitTest,junitCleanUp">
+		<echo message="Starting JUnit tests for package '${testPackageName}'"/>
+        
+		<path id="junitClasspath">
+			<fileset dir="./lib" includes="*.jar" />
+		</path>	
+	  
+		<mkdir dir="${testPackageReportsDir}" />
+
+		<property name="resourcesFolder" value="${testPackageName}/resources" />
+		
+		<for param="testSetupFile" keepgoing="true">
+			<path>
+				<fileset dir="${testPackageName}" includes="**/setup/*.xml" />
+			</path>
+			<sequential>
+				<basename property="fileBasename" file="@{testSetupFile}" suffix=".xml" />
+				<echo message="Running JUnit test '@{testSetupFile}'"/>
+				<pathconvert property="classpathProp" refid="junitClasspath"/>
+
+				<echo>Classpath is ${classpathProp}</echo>
+				<junit printsummary="yes" haltonfailure="no" fork="true" failureproperty="test:failure" enabletestlistenerevents="true" dir="${testPackageName}">
+					<jvmarg value="-DwebMethods.integrationServer.name=${testISHost}" />
+					<jvmarg value="-DwebMethods.integrationServer.port=${testISPort}" />
+					<jvmarg value="-DwebMethods.integrationServer.userid=${testISUsername}" />
+					<jvmarg value="-DwebMethods.integrationServer.password=${testISPassword}" />
+					<jvmarg value="-DwebMethods.test.setup.filename=@{testSetupFile}" />
+					<classpath>
+						<path refid="junitClasspath" />
+					</classpath>
+					<formatter type="xml" />
+					<formatter type="plain" usefile="false" /> <!-- to screen -->
+					<test name="com.wm.ps.test.WmTestSuite" outfile="TEST-${fileBasename}" haltonerror="false" haltonfailure="false" todir="${testPackageReportsDir}" />
+				</junit>
+				<replaceregexp file="${testPackageReportsDir}/TEST-${fileBasename}.xml" match=" name=&quot;com.wm.ps.test.WmTestSuite&quot; " replace=" name=&quot;com.wm.ps.test.WmTestSuite [${fileBasename}]&quot; " />												
+				<var name="fileBasename" unset="true" />
+			</sequential>
+		</for>
+
+		
+		<!-- if jenkins report dir is set publicate results there-->
+		<antcall target="junitCopyResultsToReportsDir">
+			<param name="current.report.dir" value="${testPackageReportsDir}" />
+		</antcall>
+		
+		
+		<!-- create HTML report of the test results -->
+		<junitreport todir="${testPackageReportsDir}">
+			<fileset dir="${testPackageReportsDir}">
+				<include name="TEST-*.xml" />
+				<exclude name="TESTS-TestSuites.xml" />
+			</fileset>
+			<report format="frames" todir="${testPackageReportsDir}/html" />
+		</junitreport>
+
+		<fail if="test:failure">Unit test failure</fail>
+	</target>
+
+
+	<!-- if jenkins report dir is set publicate results there-->
+	<target name="junitCopyResultsToReportsDir">
+		<echo message="Copying JUnit test results to folder '${reportDir}'"/>
+		<copy todir="${reportDir}">
+			<fileset dir="${current.report.dir}">
+				<include name="*.*" />
+				<exclude name="TESTS-TestSuites.xml"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="Test Solution" default="test" basedir="." >       
+	
+	<property name="workspace.dir" location="."/>
+	<property name="testDir" location="${testDir}"/>   
+	<property name="testObject" location="${testObject}"/>    
+	<property name="buildOutputDir" value="${workspace.dir}/target/${testObject}/build"/>
+	<property name="repositoryName" value="${testObject}Repo"/>
+	<property name="testPackageNamePattern" value="*_Test"/>
+	<property name="reportDir" value="${workspace.dir}/report"/>
+	
+	<import file="containers/${testObject}/buildTest.xml"/>	
+	<taskdef classpath="lib/ant-contrib.jar" resource="net/sf/antcontrib/antlib.xml"/>			
+
+	<target name="test" depends="startTest">
+		<description>Run tests.</description>
+	</target>	
+	
+</project>

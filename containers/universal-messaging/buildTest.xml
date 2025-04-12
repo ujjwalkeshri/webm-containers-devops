@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<project name="test" default="startTest" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	
+	<target name="startTest" />		
+
+	
+</project>

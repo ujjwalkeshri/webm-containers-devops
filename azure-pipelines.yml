@@ -1,0 +1,94 @@
+variables:
+  dockerComposeService: 'microservices-runtime'
+  
+  targetDockerRegistryConnection: 'dockehub'
+  targetDockerRegistryHost: 'docker.io'
+  targetDockerRegistryOrg: 'achoo'
+  targetDockerRepoName: 'msrazuresol'
+  targetDockerRepoTag:  'v1'
+
+  sourceDockerRegistryConnection: 'dockehub'
+  sourceDockerRegistryHost:  'docker.io'
+  sourceDockerRegistryOrg: 'store/softwareag'
+  sourceDockerRepoName: 'webmethods-microservicesruntime'
+  sourceDockerRepoTag: '10.5'
+
+  testDir: './containers/microservices-runtime/assets/Tests'
+  testProperties: ' -DtestISHost=localhost -DtestObject=$(dockerComposeService) -DtestISPort=5555 -DtestISUsername=Administrator -DtestISPassword=manage -DtestDir=$(testDir)'
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: '$(sourceDockerRegistryConnection)'
+    command: 'login'
+  displayName: 'Docker login'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: '$(Build.SourcesDirectory)/containers/docker-compose.yml'
+    dockerComposeFileArgs: |
+      REG_HOST=$(sourceDockerRegistryHost)
+      REG_ORG=$(sourceDockerRegistryOrg)
+      REPO_NAME=$(sourceDockerRepoName)
+      REPO_TAG=$(sourceDockerRepoTag)
+      TARGET_REG_HOST=$(targetDockerRegistryHost)
+      TARGET_REG_ORG=$(targetDockerRegistryOrg)
+      TARGET_REPO_NAME=$(targetDockerRepoName)
+      TARGET_REPO_TAG=$(targetDockerRepoTag)
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'build'
+    arguments: '$(dockerComposeService)'
+  displayName: 'Build'  
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: '$(Build.SourcesDirectory)/containers/docker-compose.yml'
+    dockerComposeFileArgs: |
+      REG_HOST=$(sourceDockerRegistryHost)
+      REG_ORG=$(sourceDockerRegistryOrg)
+      REPO_NAME=$(sourceDockerRepoName)
+      REPO_TAG=$(sourceDockerRepoTag)
+      TARGET_REG_HOST=$(targetDockerRegistryHost)
+      TARGET_REG_ORG=$(targetDockerRegistryOrg)
+      TARGET_REPO_NAME=$(targetDockerRepoName)
+      TARGET_REPO_TAG=$(targetDockerRepoTag)
+    action: 'Run services'
+    buildImages: false
+    arguments: '$(dockerComposeService)'
+  displayName: 'Run'    
+
+- task: Ant@1
+  inputs:
+      buildFile: 'build.xml'
+      options: '$(testProperties)'
+      targets: 'test'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+  displayName: 'Test'
+  
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: '$(targetDockerRegistryConnection)'
+    dockerComposeFile: '**/docker-compose.yml'
+    dockerComposeFileArgs: |
+      REG_HOST=$(sourceDockerRegistryHost)
+      REG_ORG=$(sourceDockerRegistryOrg)
+      REPO_NAME=$(sourceDockerRepoName)
+      REPO_TAG=$(sourceDockerRepoTag)
+      TARGET_REG_HOST=$(targetDockerRegistryHost)
+      TARGET_REG_ORG=$(targetDockerRegistryOrg)
+      TARGET_REPO_NAME=$(targetDockerRepoName)
+      TARGET_REPO_TAG=$(targetDockerRepoTag)
+    action: 'Push services'
+  displayName: 'Push' 

@@ -1,0 +1,45 @@
+###############################################################################
+#  Copyright 2013 - 2018 Software AG, Darmstadt, Germany and/or its licensors
+#
+#   SPDX-License-Identifier: Apache-2.0
+#
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.                                                            
+#
+###############################################################################
+version: "3.2"
+
+services:
+  microservices-runtime:
+    container_name: ${TEST_CONTAINER_NAME:-msrtest}
+    image: ${TARGET_REG_HOST}/${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
+    build:
+      context: microservices-runtime/
+      args:
+        - PRODUCT_IMAGE=${REG_HOST:-docker.io}/${REG_ORG:-store/softwareag}/${REPO_NAME:-webmethods-microservicesruntime}:${REPO_TAG:-10.5.0.0}
+        - BASE_IMAGE=centos:8
+    ports:
+      - ${TEST_CONTAINER_PORT:-5555}:5555                            # container specific ports 1
+    hostname: microservices-runtime
+  universal-messaging:
+    container_name: ${TEST_CONTAINER_NAME:-umtest}
+    image: ${TARGET_REG_HOST}/${TARGET_REG_ORG}/${TARGET_REPO_NAME}:${TARGET_REPO_TAG}
+    build:
+      context: universal-messaging/
+      args:
+        - PRODUCT_IMAGE=${REG_HOST:-docker.io}/${REG_ORG:-store/softwareag}/${REPO_NAME:-universalmessaging-server}:${REPO_TAG:-10.5.0.0}
+        - BASE_IMAGE=centos:8
+    ports:
+      - ${TEST_CONTAINER_PORT:-9000}:9000                            # container specific ports
+    hostname: universal-messaging
+
+
